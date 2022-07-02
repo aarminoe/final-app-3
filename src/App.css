@@ -1,7 +1,17 @@
 .App {
   text-align: center;
+  
 }
 
+body {
+  background-color: #c4c5ca;
+  height: 100%;
+
+}
+
+html {
+  height: 100%;
+}
 .App-header {
   background-color: #c4c5ca;
   min-height: 100vh;
@@ -22,6 +32,7 @@
   justify-content: center;
   font-size: calc(10px + 2vmin);
   color: white;
+  margin-top: -300px;
 }
 
 .App-link {
@@ -34,7 +45,7 @@
   background-color: rgb(255, 255, 255);
   border-radius: 20px;
   width: 400px;
-  height: 300px;
+  height: 350px;
   color: black;
 }
 
@@ -50,10 +61,11 @@
   z-index: 1;
   top: 0;
   left: 0;
-  background-color: rgb(0, 0, 0); 
   overflow-x: hidden; 
   padding-top: 20px;
   opacity: 0.2;
+  background-image: linear-gradient(black, #c4c5ca);
+  min-height: 100vh;
 }
 
 
@@ -65,12 +77,21 @@
   display: block;
 }
 
-/* When you mouse over the navigation links, change their color */
+
+
 .sidebar a:hover {
   color: #f1f1f1;
 }
 
-.logout {
-  margin-top: -800px;
-  margin-left: 600px;
+.newtask {
+  margin-top: 200px;
+}
+
+.tasklist {
+  font-size: xx-small;
+  margin-top: 50px;
+  background-color: blue;
+  position: absolute;
+  width: 160px;
+  align-items: center;
 }

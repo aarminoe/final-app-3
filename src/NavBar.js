@@ -2,6 +2,10 @@ import {NavLink, useRouteMatch} from 'react-router-dom'
 
 function NavBar({ username }) {
 
+    function handleLogOut() {
+
+    }
+
     return (
         <>
             <NavLink
@@ -11,7 +15,9 @@ function NavBar({ username }) {
             <NavLink exact to='/my-profile'>
                 {username}
             </NavLink>
-        
+            <form>
+                <button onClick={handleLogOut}>Log Out</button>
+            </form>
         </>
     )
 }

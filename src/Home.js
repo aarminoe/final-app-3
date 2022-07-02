@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useEffect, useState } from "react"
 import App from "./App"
 import { Route, Switch } from "react-router-dom"
 import NavBar from "./NavBar"
@@ -7,22 +7,29 @@ import Profile from "./Profile"
 
 function Home({ users, username }) {
 
+    const [tasks, setTasks] = useState([])
+
+    useEffect(() => {
+        fetch("http://localhost:9292/tasks")
+        .then(resp => resp.json())
+        .then(data => setTasks(data))
+    }, [])
 
     function handleLogOut() {
     }
 
+    function addTask(task) {
+        setTasks([...tasks, task])
+    }
+
+    console.log('tasks', tasks)
     return(
         <div className="home">
-            <p className="logout">
-                <form>
-                    <button  onClick={handleLogOut}>Log out</button>
-                </form>
-            </p>
             <div className="App">
             
             <Switch>
                 <Route exact path='/'>
-                    <Tasks />
+                    <Tasks tasks={tasks} onAddTask={addTask}/>
                 </Route>
                 <Route path='/my-profile'>
                     <Profile />
