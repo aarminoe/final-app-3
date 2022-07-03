@@ -22,6 +22,17 @@ function Home({ users, username, loggedInUser }) {
         setTasks([...tasks, task])
     }
 
+    function handleCompleteTask(deletedTask) {
+        const updatedTasks = tasks.filter((task) => {
+            return task !== deletedTask
+        })
+        setTasks(updatedTasks)
+        fetch(`http://localhost:9292/tasks/${deletedTask.id}`, {
+            method: 'DELETE'
+        })
+        .then(resp => resp.json())
+    }
+
     console.log('tasks', tasks)
     return(
         <div className="home">
@@ -31,7 +42,8 @@ function Home({ users, username, loggedInUser }) {
                 <Route exact path='/'>
                     <Tasks tasks={tasks} 
                     onAddTask={addTask}
-                    loggedInUser={loggedInUser}/>
+                    loggedInUser={loggedInUser}
+                    onHandleCompleteTask={handleCompleteTask}/>
                 </Route>
                 <Route path='/my-profile'>
                     <Profile />

@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import Task from "./Task"
 
-function Tasks({ onAddTask, tasks, loggedInUser }) {
+function Tasks({ onAddTask, tasks, loggedInUser, onHandleCompleteTask }) {
 
     const [taskAdded, setTaskAdded] = useState(false)
     const [newTaskType, setNewTaskType] = useState('General')
@@ -88,7 +88,8 @@ function Tasks({ onAddTask, tasks, loggedInUser }) {
             
             <div className="tasklist">
                 {tasks.map((task) => {
-                    return <Task task={task} />
+                    return <Task task={task} loggedInUser={loggedInUser}
+                    onHandleCompleteTask={onHandleCompleteTask}/>
                 })}
             </div>
         </div>

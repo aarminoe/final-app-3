@@ -1,11 +1,18 @@
 
 
-function Task({ task }) {
+function Task({ task, loggedInUser, onHandleCompleteTask }) {
 
     console.log(task)
 
+    function handleCompleteTaskClick() {
+        onHandleCompleteTask(task)
+    }
+
     return (
-        <p className="singletasks">{task.name}</p>
+        <div>
+            <p className="singletasks">{task.name}</p>
+            <button onClick={handleCompleteTaskClick}>✔️</button>
+        </div>
     )
 }
 
