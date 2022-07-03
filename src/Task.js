@@ -1,8 +1,11 @@
 
 
-function Task() {
+function Task({ task }) {
+
+    console.log(task)
+
     return (
-        <p className="singletasks">task</p>
+        <p className="singletasks">{task.name}</p>
     )
 }
 
