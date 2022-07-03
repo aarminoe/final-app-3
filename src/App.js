@@ -10,6 +10,7 @@ function App() {
   const [username, setUsername] = useState(null)
   const [logInEnable, setLogInEnable] = useState(false)
   const [logInError, setLogInError] = useState(false)
+  const [loggedInUser, setLoggedInUser] = useState(null)
   
 
   useEffect(() => {
@@ -24,7 +25,9 @@ function App() {
       if (user.username === username && user.password === password) {
         setLogInEnable(true)
         setLogInError(false)
+        setLoggedInUser(user)
         console.log('yes')
+        console.log(user)
       }
       else {
         setLogInError(true)
@@ -46,7 +49,7 @@ function App() {
     <div>
       {logInEnable ? 
       <Home 
-      username = {username} users = {users}/> :
+      username = {username} users = {users} loggedInUser={loggedInUser}/> :
       <div className="App">
         <header className="App-header">
           <form className='card' onSubmit={handleSubmit}>

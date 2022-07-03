@@ -5,7 +5,7 @@ import NavBar from "./NavBar"
 import Tasks from "./Tasks"
 import Profile from "./Profile"
 
-function Home({ users, username }) {
+function Home({ users, username, loggedInUser }) {
 
     const [tasks, setTasks] = useState([])
 
@@ -29,7 +29,9 @@ function Home({ users, username }) {
             
             <Switch>
                 <Route exact path='/'>
-                    <Tasks tasks={tasks} onAddTask={addTask}/>
+                    <Tasks tasks={tasks} 
+                    onAddTask={addTask}
+                    loggedInUser={loggedInUser}/>
                 </Route>
                 <Route path='/my-profile'>
                     <Profile />

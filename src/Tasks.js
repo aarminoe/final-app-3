@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import Task from "./Task"
 
-function Tasks({ onAddTask, tasks }) {
+function Tasks({ onAddTask, tasks, loggedInUser }) {
 
     const [taskAdded, setTaskAdded] = useState(false)
     const [newTaskType, setNewTaskType] = useState('General')
@@ -14,6 +14,7 @@ function Tasks({ onAddTask, tasks }) {
 
     function handleTaskAddToList(e) {
         e.preventDefault()
+        console.log(loggedInUser.id)
         console.log(newTaskDate)
         console.log(newTaskName)
         console.log(newTaskType)
@@ -24,7 +25,9 @@ function Tasks({ onAddTask, tasks }) {
             },
             body: JSON.stringify({
                 name: newTaskName,
+                category: newTaskType,
                 date: newTaskDate,
+                user_id: loggedInUser.id
             }),
         })
         .then(resp => resp.json())
@@ -33,8 +36,9 @@ function Tasks({ onAddTask, tasks }) {
 
     function handleNewTaskType(e) {
         setNewTaskType(e.target.value)
+        console.log(e.target.value)
     }
-
+    console.log(newTaskType)
     function handleNewTaskDate(e) {
         setNewTaskDate(e.target.value)
     }
@@ -43,7 +47,6 @@ function Tasks({ onAddTask, tasks }) {
         setNewTaskName(e.target.value)
     }
 
-    console.log('here to',tasks)
 
     return (  
         <div>
@@ -55,14 +58,22 @@ function Tasks({ onAddTask, tasks }) {
                     <p>
                         <input onChange={handleNewTaskName} type='text' placeholder="Task Name..."></input>
                     </p>
-                    <p>
+                    <div>
                         <select onChange={handleNewTaskType}>
+                            {/* <input type='radio' id='general' value='general' name='task-type'/>
+                            <label for='general'>General</label>
+                            <input type='radio' id='chore' value='chore' name='task-type'/>
+                            <label for='chore'>Chore</label>
+                            <input type='radio' id='goal' value='goal' name='task-type'/>
+                            <label for='goal'>Goal</label>
+                            <input type='radio' id='reminder' value='reminder' name='task-type'/>
+                            <label for='reminder'>Reminder</label> */}
                             <option value='general'>General</option>
                             <option value='chore'>Chore</option>
                             <option value='goal'>Goal</option>
                             <option value='reminder'>Reminder</option>
                         </select>
-                    </p>
+                    </div>
                     <p>
                         <input onChange={handleNewTaskDate} type='date' ></input>
 
