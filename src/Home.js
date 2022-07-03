@@ -4,6 +4,7 @@ import { Route, Switch } from "react-router-dom"
 import NavBar from "./NavBar"
 import Tasks from "./Tasks"
 import Profile from "./Profile"
+import CreateProfile from "./CreateProfile"
 
 function Home({ users, username, loggedInUser }) {
 
@@ -47,6 +48,9 @@ function Home({ users, username, loggedInUser }) {
                 </Route>
                 <Route path='/my-profile'>
                     <Profile />
+                </Route>
+                <Route exact path='/create-profile'>
+                    <CreateProfile />
                 </Route>
                 
              </Switch>

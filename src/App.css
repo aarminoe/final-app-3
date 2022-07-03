@@ -45,7 +45,7 @@ html {
   background-color: rgb(255, 255, 255);
   border-radius: 20px;
   width: 400px;
-  height: 350px;
+  height: 400px;
   color: black;
 }
 
@@ -95,3 +95,26 @@ html {
   width: 160px;
   align-items: center;
 }
+
+.tasker-title {
+  color: black;
+  margin-top: -100px;
+}
+
+.under-login {
+  font-size: medium;
+}
+
+.create-profile-card {
+  margin-top: 50px;
+  background-color: rgb(255, 255, 255);
+  border-radius: 20px;
+  width: 400px;
+  height: 150px;
+  color: black;
+}
+
+.profile-tag {
+  margin: 5px;
+}
+
