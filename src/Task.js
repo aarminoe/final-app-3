@@ -1,4 +1,5 @@
 import React, {useState} from "react"
+import Updates from "./Updates"
 
 function Task({ task, loggedInUser, onHandleCompleteTask,onHandleTaskDataChange }) {
 
@@ -8,6 +9,9 @@ function Task({ task, loggedInUser, onHandleCompleteTask,onHandleTaskDataChange 
     const [taskNameEdit, setTaskNameEdit] = useState(task.name)
     const [taskCategoryEdit, setTaskCategoryEdit] = useState(task.category)
     const [taskDateEdit, setTaskDateEdit] = useState(task.date)
+    const [showUpdates, setShowUpdates] = useState(false)
+    const [taskList, setTaskList] = useState([])
+
 
     function handleCompleteTaskClick() {
         onHandleCompleteTask(task)
@@ -47,6 +51,18 @@ function Task({ task, loggedInUser, onHandleCompleteTask,onHandleTaskDataChange 
         setTaskDateEdit(e.target.value)
     }
 
+    function handleUpdateClick() {
+        setShowUpdates((showUpdates) => !showUpdates)
+        fetch("http://localhost:9292/updates")
+        .then(resp => resp.json())
+        .then((data) => {
+            const taskUpdates = data.filter((d) => {
+                return d.task_id === task.id
+            })
+            setTaskList(taskUpdates)
+        })
+    }
+
 
     return (
         <div className="task-card">
@@ -80,6 +96,13 @@ function Task({ task, loggedInUser, onHandleCompleteTask,onHandleTaskDataChange 
             <button onClick={handleCompleteTaskClick}>✔️</button>
             <button onClick={handleEditTaskClick}>{taskEdit ? 'Done' : 'Edit'}</button>
             {taskEdit ? <p>hi</p>:null}
+            <p>
+                <button onClick={handleUpdateClick}>Updates</button>
+            </p>
+            {showUpdates ? 
+            <div>
+                <Updates taskList={taskList}/>
+            </div> : null}
             _________________________
         </div>
     )

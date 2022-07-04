@@ -39,6 +39,10 @@ function Home({ users, username, loggedInUser }) {
         .then(resp => resp.json())
     }
 
+    function handleTaskDataChange() {
+        console.log('change')
+    }
+
 
     return(
         <div className="home">
@@ -50,6 +54,7 @@ function Home({ users, username, loggedInUser }) {
                     onAddTask={addTask}
                     loggedInUser={loggedInUser}
                     onHandleCompleteTask={handleCompleteTask}
+                    onHandleTaskDataChange={handleTaskDataChange}
                     />
                 </Route>
                 <Route path='/my-profile'>

@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { useState, useEffect } from "react"
 import Task from "./Task"
 
 function Tasks({ onAddTask, tasks, loggedInUser, onHandleCompleteTask,onHandleEditTask,onHandleTaskDataChange }) {
@@ -7,6 +7,9 @@ function Tasks({ onAddTask, tasks, loggedInUser, onHandleCompleteTask,onHandleEd
     const [newTaskType, setNewTaskType] = useState('General')
     const [newTaskDate, setNewTaskDate] = useState('')
     const [newTaskName, setNewTaskName] = useState('')
+
+
+ 
 
     function handleNewTask(){
         setTaskAdded(true)
@@ -55,10 +58,11 @@ function Tasks({ onAddTask, tasks, loggedInUser, onHandleCompleteTask,onHandleEd
             {taskAdded ? 
             <div className="newtask">
                 <form onSubmit={handleTaskAddToList}>
-                    <p>
+                    <p className="task-prompt">
                         <input onChange={handleNewTaskName} type='text' placeholder="Task Name..."></input>
                     </p>
-                    <div>
+                    <div className="task-prompt">
+                        Category:
                         <select onChange={handleNewTaskType}>
                             <option value='General'>General</option>
                             <option value='Chore'>Chore</option>
@@ -66,7 +70,8 @@ function Tasks({ onAddTask, tasks, loggedInUser, onHandleCompleteTask,onHandleEd
                             <option value='Reminder'>Reminder</option>
                         </select>
                     </div>
-                    <p>
+                    <p className="task-prompt">
+                        Due By:
                         <input onChange={handleNewTaskDate} type='date' ></input>
 
                     </p>
