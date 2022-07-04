@@ -39,6 +39,7 @@ function Home({ users, username, loggedInUser }) {
         .then(resp => resp.json())
     }
 
+
     console.log('tasks', tasks)
     return(
         <div className="home">
@@ -49,7 +50,8 @@ function Home({ users, username, loggedInUser }) {
                     <Tasks tasks={tasks} 
                     onAddTask={addTask}
                     loggedInUser={loggedInUser}
-                    onHandleCompleteTask={handleCompleteTask}/>
+                    onHandleCompleteTask={handleCompleteTask}
+                    />
                 </Route>
                 <Route path='/my-profile'>
                     <Profile />

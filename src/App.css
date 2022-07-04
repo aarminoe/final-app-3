@@ -88,12 +88,14 @@ html {
 }
 
 .tasklist {
-  font-size: xx-small;
+  font-size: small;
   margin-top: 50px;
-  background-color: blue;
+  background-color: rgb(255, 255, 255);
   position: absolute;
   width: 160px;
   align-items: center;
+  border-radius: 20px;
+  color: black;
 }
 
 .tasker-title {

@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import Task from "./Task"
 
-function Tasks({ onAddTask, tasks, loggedInUser, onHandleCompleteTask }) {
+function Tasks({ onAddTask, tasks, loggedInUser, onHandleCompleteTask,onHandleEditTask }) {
 
     const [taskAdded, setTaskAdded] = useState(false)
     const [newTaskType, setNewTaskType] = useState('General')
@@ -68,10 +68,10 @@ function Tasks({ onAddTask, tasks, loggedInUser, onHandleCompleteTask }) {
                             <label for='goal'>Goal</label>
                             <input type='radio' id='reminder' value='reminder' name='task-type'/>
                             <label for='reminder'>Reminder</label> */}
-                            <option value='general'>General</option>
-                            <option value='chore'>Chore</option>
-                            <option value='goal'>Goal</option>
-                            <option value='reminder'>Reminder</option>
+                            <option value='General'>General</option>
+                            <option value='Chore'>Chore</option>
+                            <option value='Goal'>Goal</option>
+                            <option value='Reminder'>Reminder</option>
                         </select>
                     </div>
                     <p>
