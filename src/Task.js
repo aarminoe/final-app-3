@@ -1,10 +1,13 @@
 import React, {useState} from "react"
 
-function Task({ task, loggedInUser, onHandleCompleteTask }) {
+function Task({ task, loggedInUser, onHandleCompleteTask,onHandleTaskDataChange }) {
 
     console.log(task)
 
     const [taskEdit, setTaskEdit] = useState(false)
+    const [taskNameEdit, setTaskNameEdit] = useState(task.name)
+    const [taskCategoryEdit, setTaskCategoryEdit] = useState(task.category)
+    const [taskDateEdit, setTaskDateEdit] = useState(task.date)
 
     function handleCompleteTaskClick() {
         onHandleCompleteTask(task)
@@ -15,31 +18,67 @@ function Task({ task, loggedInUser, onHandleCompleteTask }) {
         console.log('hi')
     }
 
-    
-    // function handleEditTask(editTask) {
-    //     fetch(`http://localhost:9292/tasks/${editTask.id}`, {
-    //         method: 'PATCH',
-    //         headers: {
-    //             'Content-Type': 'application/json'
-    //         },
-    //         body: JSON.stringify({
-    //             name:
-    //         })
-    //     })
-    // }
+    function handleTaskChanges(e) {
+        e.preventDefault()
+        fetch(`http://localhost:9292/tasks/${task.id}`, {
+            method: 'PATCH',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                name: taskNameEdit,
+                category: taskCategoryEdit,
+                date: taskDateEdit
+            })
+        })
+        .then(resp => resp.json())
+        .then(data => onHandleTaskDataChange(data))
+    }
+
+    function handleEditTaskName(e) {
+        setTaskNameEdit(e.target.value)
+    }
+
+    function handleEditTaskCategory(e) {
+        setTaskCategoryEdit(e.target.value)
+    }
+
+    function handleEditTaskDate(e) {
+        setTaskDateEdit(e.target.value)
+    }
+
 
     return (
         <div className="task-card">
-            <p className="singletasks">Task: {task.name}</p>
-            <p>Category: {taskEdit ? 
-            <form>
-                <input type='text' placeholder={task.category}></input> 
-                <button>Add Change</button>
+            <form onSubmit={handleTaskChanges}>
+                <p className="singletasks">Task: {taskEdit ? 
+                <div>
+                    <input type='text' placeholder={task.name}
+                    onChange={handleEditTaskName}
+                    value={taskNameEdit}></input> 
+                </div>
+                : task.name}</p>
+                <p>Category: {taskEdit ? 
+                <div>
+                    <select onChange={handleEditTaskCategory}>
+                        <option value='General'>General</option>
+                        <option value='Chore'>Chore</option>
+                        <option value='Goal'>Goal</option>
+                        <option value='Reminder'>Reminder</option>
+                    </select> 
+                </div>
+                : task.category}</p>
+                {task.date ? <p>Due by: {taskEdit ? 
+                <div>
+                    <input type='text' placeholder={task.date}
+                    onChange={handleEditTaskDate}
+                    value={taskDateEdit}></input> 
+                </div>
+                : task.date}</p> : null}
+                {taskEdit ? <button>Add Change</button> : null}
             </form>
-            : task.category}</p>
-            {task.date ? <p>Due by: {task.date}</p> : null}
             <button onClick={handleCompleteTaskClick}>✔️</button>
-            <button onClick={handleEditTaskClick}>Edit</button>
+            <button onClick={handleEditTaskClick}>{taskEdit ? 'Done' : 'Edit'}</button>
             {taskEdit ? <p>hi</p>:null}
             _________________________
         </div>

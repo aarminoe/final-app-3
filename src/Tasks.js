@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import Task from "./Task"
 
-function Tasks({ onAddTask, tasks, loggedInUser, onHandleCompleteTask,onHandleEditTask }) {
+function Tasks({ onAddTask, tasks, loggedInUser, onHandleCompleteTask,onHandleEditTask,onHandleTaskDataChange }) {
 
     const [taskAdded, setTaskAdded] = useState(false)
     const [newTaskType, setNewTaskType] = useState('General')
@@ -60,14 +60,6 @@ function Tasks({ onAddTask, tasks, loggedInUser, onHandleCompleteTask,onHandleEd
                     </p>
                     <div>
                         <select onChange={handleNewTaskType}>
-                            {/* <input type='radio' id='general' value='general' name='task-type'/>
-                            <label for='general'>General</label>
-                            <input type='radio' id='chore' value='chore' name='task-type'/>
-                            <label for='chore'>Chore</label>
-                            <input type='radio' id='goal' value='goal' name='task-type'/>
-                            <label for='goal'>Goal</label>
-                            <input type='radio' id='reminder' value='reminder' name='task-type'/>
-                            <label for='reminder'>Reminder</label> */}
                             <option value='General'>General</option>
                             <option value='Chore'>Chore</option>
                             <option value='Goal'>Goal</option>
@@ -89,7 +81,9 @@ function Tasks({ onAddTask, tasks, loggedInUser, onHandleCompleteTask,onHandleEd
             <div className="tasklist">
                 {tasks.map((task) => {
                     return <Task task={task} loggedInUser={loggedInUser}
-                    onHandleCompleteTask={onHandleCompleteTask}/>
+                    onHandleCompleteTask={onHandleCompleteTask}
+                    onHandleTaskDataChange={onHandleTaskDataChange}
+                    />
                 })}
             </div>
         </div>

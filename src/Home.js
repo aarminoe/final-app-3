@@ -40,7 +40,6 @@ function Home({ users, username, loggedInUser }) {
     }
 
 
-    console.log('tasks', tasks)
     return(
         <div className="home">
             <div className="App">
