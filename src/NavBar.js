@@ -15,6 +15,9 @@ function NavBar({ username }) {
             <NavLink exact to='/my-profile'>
                 {username}
             </NavLink>
+            <NavLink exact to='/Taskers'>
+                Taskers
+            </NavLink>
             <form>
                 <button onClick={handleLogOut}>Log Out</button>
             </form>

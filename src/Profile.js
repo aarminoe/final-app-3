@@ -1,9 +1,15 @@
 
 
-function Profile() {
+function Profile({loggedInUser}) {
+    console.log(loggedInUser)
     return (
         <div>
-            profile here
+           <h1>
+                {loggedInUser.username}
+           </h1>
+           <div>
+                bio
+           </div>
         </div>
     )
 }

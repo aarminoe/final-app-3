@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router-dom"
 import NavBar from "./NavBar"
 import Tasks from "./Tasks"
 import Profile from "./Profile"
-import CreateProfile from "./CreateProfile"
+import Taskers from "./Taskers"
 
 function Home({ users, username, loggedInUser }) {
 
@@ -58,7 +58,10 @@ function Home({ users, username, loggedInUser }) {
                     />
                 </Route>
                 <Route path='/my-profile'>
-                    <Profile />
+                    <Profile loggedInUser={loggedInUser}/>
+                </Route>
+                <Route path='/taskers'>
+                    <Taskers users={users}/>
                 </Route>
              </Switch>
             <div className="sidebar">

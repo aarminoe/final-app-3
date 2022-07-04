@@ -4,16 +4,19 @@ function CreateProfile({ onHandleCreateUser }) {
 
     const [newUser, setNewUser] = useState('')
     const [newPass, setNewPass] = useState('')
+    const [newBio, setNewBio] = useState('')
     const [profileCreated, setProfileCreated] = useState(false)
 
     function handleUser(e) {
         setNewUser(e.target.value)
-        console.log(e.target.value)
     }
 
     function handlePassword(e) {
         setNewPass(e.target.value)
-        console.log(e.target.value)
+    }
+
+    function handleBio(e) {
+        setNewBio(e.target.value)
     }
 
     function handleNewUser(e) {
@@ -25,7 +28,8 @@ function CreateProfile({ onHandleCreateUser }) {
             },
             body: JSON.stringify({
                 username: newUser,
-                password: newPass
+                password: newPass,
+                bio: newBio
             })
         })
         .then(resp => resp.json())
@@ -40,6 +44,8 @@ function CreateProfile({ onHandleCreateUser }) {
                 <input onChange={handleUser} type='text' className="profile-tag-input"></input>
                 <p className="profile-tag">Password</p>
                 <input onChange={handlePassword} type='password' className="profile-tag-input"></input>
+                <p className="profile-tag">Bio</p>
+                <input onChange={handleBio} type='text' className="profile-tag-input"></input>
                 <p className="profile-tag">
                     <button>Create Profile!</button>
                 </p>
