@@ -125,3 +125,10 @@ html {
   font-size: medium;
 }
 
+.single-comment {
+  border-style: solid;
+}
+
+.delete-update {
+  margin-left: 173px;
+}

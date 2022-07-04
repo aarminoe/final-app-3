@@ -63,6 +63,22 @@ function Task({ task, loggedInUser, onHandleCompleteTask,onHandleTaskDataChange 
         })
     }
 
+    function addTaskUpdate(newTask) {
+        const updatedTaskList = [...taskList, newTask]
+        setTaskList(updatedTaskList)
+    }
+
+    function handleDeleteUpdate(deletedUpdate) {
+        const updatedUpdates = taskList.filter((update) => {
+            return update !== deletedUpdate
+        })
+        setTaskList(updatedUpdates)
+        fetch(`http://localhost:9292/tasks/${deletedUpdate.id}`, {
+            method: 'DELETE',
+        })
+        .then(resp => resp.json())
+    }
+
 
     return (
         <div className="task-card">
@@ -101,7 +117,8 @@ function Task({ task, loggedInUser, onHandleCompleteTask,onHandleTaskDataChange 
             </p>
             {showUpdates ? 
             <div>
-                <Updates taskList={taskList}/>
+                <Updates taskList={taskList} task={task} onAddTaskUpdate={addTaskUpdate}
+                onHandleDeleteUpdate={handleDeleteUpdate}/>
             </div> : null}
             _________________________
         </div>
