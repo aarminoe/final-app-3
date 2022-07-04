@@ -13,7 +13,12 @@ function Home({ users, username, loggedInUser }) {
     useEffect(() => {
         fetch("http://localhost:9292/tasks")
         .then(resp => resp.json())
-        .then(data => setTasks(data))
+        .then((data) => {
+            const userTasks = data.filter((d) => {
+                return d.user_id === loggedInUser.id
+            })
+            setTasks(userTasks)
+        })
     }, [])
 
     function handleLogOut() {
@@ -49,10 +54,6 @@ function Home({ users, username, loggedInUser }) {
                 <Route path='/my-profile'>
                     <Profile />
                 </Route>
-                <Route exact path='/create-profile'>
-                    <CreateProfile />
-                </Route>
-                
              </Switch>
             <div className="sidebar">
                 <NavBar username={username}/>

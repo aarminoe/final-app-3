@@ -1,22 +1,36 @@
 import React, {useState} from "react"
 
-function CreateProfile() {
+function CreateProfile({ onHandleCreateUser }) {
 
     const [newUser, setNewUser] = useState('')
     const [newPass, setNewPass] = useState('')
+    const [profileCreated, setProfileCreated] = useState(false)
 
     function handleUser(e) {
         setNewUser(e.target.value)
+        console.log(e.target.value)
     }
 
     function handlePassword(e) {
         setNewPass(e.target.value)
+        console.log(e.target.value)
     }
 
     function handleNewUser(e) {
         e.preventDefault()
-        console.log(newUser)
-        console.log(newPass)
+        fetch("http://localhost:9292/users", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                username: newUser,
+                password: newPass
+            })
+        })
+        .then(resp => resp.json())
+        .then(data => onHandleCreateUser(data))
+        setProfileCreated(true)
     }
 
     return (
@@ -29,6 +43,7 @@ function CreateProfile() {
                 <p className="profile-tag">
                     <button>Create Profile!</button>
                 </p>
+                {profileCreated ? <p>Profile Created! Please Log In!</p>:null}
             </form>
             
         </div>

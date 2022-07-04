@@ -46,7 +46,7 @@ function Tasks({ onAddTask, tasks, loggedInUser, onHandleCompleteTask }) {
     function handleNewTaskName(e) {
         setNewTaskName(e.target.value)
     }
-
+    console.log(loggedInUser)
 
     return (  
         <div>

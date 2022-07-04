@@ -15,6 +15,7 @@ function App() {
   const [logInError, setLogInError] = useState(false)
   const [loggedInUser, setLoggedInUser] = useState(null)
   const [addNewProfile, setAddNewProfile] = useState(false)
+  const [newProfileIncoming, setNewProfileIncoming] = useState(false)
 
   
 
@@ -49,12 +50,22 @@ function App() {
     setPassword(e.target.value)
   }
 
+  function handleCreateUser(newUser) {
+    const updatedUsers = [...users, newUser]
+    setUsers(updatedUsers)
+    console.log(users)
+  }
+
+  function handleNewProfileClick() {
+    setNewProfileIncoming(true)
+  }
+
   return (
     <div>
       
       {logInEnable ? 
-      <Home 
-      username = {username} users = {users} loggedInUser={loggedInUser}/> :
+        <Home
+        username = {username} users = {users} loggedInUser={loggedInUser}/>  :
       <div className="App">
         <header className="App-header">
           <h1 className='tasker-title'>TASKER</h1>
@@ -66,13 +77,11 @@ function App() {
             <p className='under-login'>
               <button>Log In</button>
               <p>or</p>
-              <NavLink exact to='/create-profile'>Create Profile</NavLink>
             </p>
           </form>
+              <button className='create-profile-button' onClick={handleNewProfileClick}>Create Profile</button>
               <div className='under-login'>
-                <Route exact path='/create-profile'>
-                      <CreateProfile addNewProfile={addNewProfile}/>
-                </Route>
+                  {newProfileIncoming ? <CreateProfile addNewProfile={addNewProfile} onHandleCreateUser={handleCreateUser}/>: null}
               </div>
           {logInError ? <p>User/Password Not Found</p> : null}
         </header>
