@@ -6,7 +6,7 @@ function Taskers({users}) {
 
     return (
         <div>
-            <div>
+            <div className="taskers">
                 {users.map((user) => {
                     return <Tasker user={user}/>
                 })}

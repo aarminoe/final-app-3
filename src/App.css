@@ -136,3 +136,30 @@ html {
 .create-profile-button {
   margin-top: -50px;
 }
+
+.user-bio {
+  width: 600px;
+}
+
+.taskers {
+  position: absolute;
+  left: 150px;
+  width: 800px;
+}
+
+.single-tasker {
+  background-color: #646464;
+  transition: all .2s linear;
+}
+
+.single-tasker:hover {
+  background-color: rgb(85, 146, 85);
+}
+
+.user-bio-tasker {
+  font-size: medium;
+}
+
+.about-me {
+  font-size: large;
+}

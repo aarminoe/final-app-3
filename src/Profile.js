@@ -7,8 +7,8 @@ function Profile({loggedInUser}) {
            <h1>
                 {loggedInUser.username}
            </h1>
-           <div>
-                bio
+           <div className="user-bio">
+                {loggedInUser.bio}
            </div>
         </div>
     )
